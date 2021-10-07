@@ -11,6 +11,6 @@ public interface PromoService {
 
     BigDecimal applyPromotions(Cart cart);
 
-    BigDecimal applyPromotion(CartDto cart, Rule rule);
+    void applyPromotion(CartDto cart, Rule rule);
 
 }

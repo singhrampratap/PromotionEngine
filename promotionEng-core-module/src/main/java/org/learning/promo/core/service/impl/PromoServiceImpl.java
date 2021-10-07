@@ -1,5 +1,6 @@
 package org.learning.promo.core.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.learning.promo.core.service.CartEnrichmentService;
 import org.learning.promo.core.service.PromoService;
 import org.learning.promo.core.service.RuleService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.List;
 
+@Slf4j
 @Component
 public class PromoServiceImpl implements PromoService {
 
@@ -40,14 +42,14 @@ public class PromoServiceImpl implements PromoService {
             }
         }
         totalOrderValue= totalOrderValue.add(cartDto.getCartEntries().stream()
-                .filter(e->!e.isPromoApplied())
                 .map(CartDto.CartEntry::getTotalPriceAfterDiscount)
                 .reduce(BigDecimal.ZERO,BigDecimal::add));
         return totalOrderValue;
     }
 
     @Override
-    public BigDecimal applyPromotion(CartDto cartDto, Rule rule) {
-        return BigDecimal.ZERO;
+    public void applyPromotion(CartDto cartDto, Rule rule) {
+        log.debug("applied promotion with ruleId {}, ruleDesc {} on cart {}",rule.getRuleId(),
+                rule.getDesc(),cartDto.getCartEntries());
     }
 }

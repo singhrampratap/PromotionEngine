@@ -1,0 +1,6 @@
+rootProject.name = 'PromotionEngine'
+
+include 'promotionEng-core-module'
+include 'promotionEng-data-module'
+include 'promotionEng-dao-module'
+include 'promotionEng-config-module'

@@ -49,6 +49,11 @@ public class RuleServiceImpl implements RuleService {
                     return false;
                 }
             }
+            for(String skuId : skuList) {
+                CartDto.CartEntry cartEntry = groupedBySkuIdMap.get(skuId);
+                //TODO- setTotalPriceAfterDiscount
+                cartEntry.setPromoApplied(true);
+            }
             return true;
         }
         return false;
